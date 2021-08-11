@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <banner />
-    首页
   </div>
 </template>
 
@@ -19,5 +18,6 @@ export default {
 <style lang="less" scoped>
   .home {
     padding: 30px;
+    width: 100%;
   }
 </style>

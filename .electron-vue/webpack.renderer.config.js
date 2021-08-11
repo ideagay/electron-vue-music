@@ -58,7 +58,13 @@ let rendererConfig = {
       },
       {
         test: /\.less$/,
-        use: ['vue-style-loader', 'css-loader', 'less-loader']
+        use: ['vue-style-loader', 'css-loader', 'less-loader', {
+          loader: 'style-resources-loader',
+          options: {
+              patterns: path.join(__dirname, '../src/renderer/styles/global.less'),
+              injector: 'append'
+          }
+        }]
       },
       {
         test: /\.css$/,

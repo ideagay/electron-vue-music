@@ -9,8 +9,14 @@
     </div>
     <div class="item control">
       <i class="iconfont iconlove"></i>
+      <i class="iconfont iconshangyiqu"></i>
+      <i class="iconfont iconbofang"></i>
+      <i class="iconfont iconxiayiqu"></i>
+      <i class="iconfont iconshanchu"></i>
     </div>
-    <div class="item tool"></div>
+    <div class="item tool">
+      <i class="iconfont iconlaba_"></i>
+    </div>
   </div>
 </template>
 
@@ -53,9 +59,28 @@ export default {
   }
   .control {
     width: 50%;
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .iconshangyiqu {
+      margin:0 20px 0 33px;
+      color: @primary-color;
+    }
+    .iconbofang {
+      font-size: 44px;
+      color: @primary-color;
+    }
+    .iconxiayiqu {
+      margin:0 33px 0 20px;
+      color: @primary-color;
+    }
   }
   .tool {
     width: 20%;
+    display: flex;
+    justify-content: flex-end;
+    i {
+      font-size: 20px;
+    }
   }
 </style>
