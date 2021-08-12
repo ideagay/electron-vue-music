@@ -14,7 +14,7 @@ export default {
   .sec-title {
     font-size: 18px;
     line-height: 1;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     i {
       font-size: 20px;
       margin-left: 4px;

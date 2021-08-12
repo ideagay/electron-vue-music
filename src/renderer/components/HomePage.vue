@@ -1,10 +1,10 @@
 <template>
   <div class="home">
-    <banner />
-    <div>
+    <banner :imgs="info.banner" />
+    <div class="section">
       <sec-title>推荐歌单</sec-title>
       <eva-row :gutter="20">
-        <eva-col style="width: 20%;" v-for="(item, index) in recommend" :key="index">
+        <eva-col style="width: 20%;" v-for="(item, index) in info.recommend" :key="index">
           <music-card
           style="marginBottom: 30px;"
            :data="item">
@@ -12,7 +12,32 @@
         </eva-col>
       </eva-row>
     </div>
-    <div class="recom"></div>
+    <div class="section">
+      <sec-title>独家放送</sec-title>
+      <eva-row :gutter="20">
+        <eva-col :span="6" v-for="item in info.dujia" :key="item.id">
+          <music-card
+          style="marginBottom: 30px;"
+           :data="item">
+          </music-card>
+        </eva-col>
+      </eva-row>
+    </div>
+    <div class="section">
+      <sec-title>推荐MV</sec-title>
+      <eva-row :gutter="20">
+        <eva-col :span="6" v-for="item in info.mv" :key="item.id">
+          <music-card
+          style="marginBottom: 30px;"
+           :data="item"
+           :lineClamp="1">
+          </music-card>
+        </eva-col>
+      </eva-row>
+    </div>
+    <div class="section">
+      <fm />
+    </div>
   </div>
 </template>
 
@@ -22,6 +47,7 @@ import SecTitle from '@/components/common/SecTitle.vue';
 import MusicCard from '@/components/common/MusicCard.vue';
 import EvaRow from '@/components/common/EvaRow.vue';
 import EvaCol from '@/components/common/EvaCol.vue';
+import Fm from '@/components/HomePage/Fm.vue';
 require('@/mock/homePage.js');
 
 export default {
@@ -31,17 +57,17 @@ export default {
     SecTitle,
     MusicCard,
     EvaRow,
-    EvaCol
+    EvaCol,
+    Fm
   },
   data() {
     return {
-      recommend: []
+      info: {}
     };
   },
   mounted() {
-    this.$http.get('/home/recommend').then((res) => {
-      console.log(res);
-      this.recommend = res.data.list;
+    this.$http.get('/home/data').then((res) => {
+      this.info = res;
     });
   }
 };
@@ -51,5 +77,8 @@ export default {
   .home {
     padding: 30px;
     width: 100%;
+    .section {
+      margin-bottom: 20px;
+    }
   }
 </style>

@@ -2,9 +2,9 @@
   <div class="banner">
       <div class="imgs">
         <transition-group name="flip-list" tag="ul">
-          <img :src="img" :class="{'current': index === currentIndex,
+          <img :src="item.img" :class="{'current': index === currentIndex,
           'prev': index === prevIndex, 'next': index === nextIndex}"
-          v-for="(img, index) in imgs" :key="index">
+          v-for="(item, index) in imgs" :key="index">
         </transition-group>
       </div>
     <div class="dots">
@@ -20,12 +20,14 @@ export default {
   data() {
     return {
       interval: null,
-      currentIndex: 0,
-      imgs: ['http://p1.music.126.net/UFccSDzsg-Lc4nf5I60HJw==/109951166268345690.jpg?imageView&quality=89',
-        'http://p1.music.126.net/2EhMvHLglu0beb3QaTtA8Q==/109951166268917890.jpg?imageView&quality=89',
-        'http://p1.music.126.net/44nFHC3ESjIeHRcf9NUC8A==/109951166268877128.jpg?imageView&quality=89',
-        'http://p1.music.126.net/RCTUQ6G4ucXP0zi9KyR2Sw==/109951166268898866.jpg?imageView&quality=89']
+      currentIndex: 0
     };
+  },
+  props: {
+    imgs: {
+      type: Array,
+      default: () => ([])
+    }
   },
   computed: {
     prevIndex() {
@@ -36,19 +38,28 @@ export default {
       return this.currentIndex === len - 1 ? 0 : this.currentIndex + 1;
     }
   },
+  watch: {
+    imgs(val) {
+      if (val.length > 0) {
+        this.start();
+      }
+    }
+  },
   destroyed() {
     clearInterval(this.interval);
     this.interval = null;
   },
-  mounted() {
-    const len = this.imgs.length;
-    this.interval = setInterval(() => {
-      if (this.currentIndex === len - 1) {
-        this.currentIndex = 0;
-      } else {
-        this.currentIndex += 1;
-      }
-    }, 5000);
+  methods: {
+    start() {
+      const len = this.imgs.length;
+      this.interval = setInterval(() => {
+        if (this.currentIndex === len - 1) {
+          this.currentIndex = 0;
+        } else {
+          this.currentIndex += 1;
+        }
+      }, 5000);
+    }
   }
 };
 </script>
