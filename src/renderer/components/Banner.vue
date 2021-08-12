@@ -1,10 +1,5 @@
 <template>
   <div class="banner">
-    <!-- <div class="imgs">
-      <img :src="imgs[prevIndex]" class="prev">
-      <img :src="imgs[currentIndex]" class="current">
-      <img :src="imgs[nextIndex]" class="next">
-    </div> -->
       <div class="imgs">
         <transition-group name="flip-list" tag="ul">
           <img :src="img" :class="{'current': index === currentIndex,
