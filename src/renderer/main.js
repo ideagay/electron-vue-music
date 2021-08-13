@@ -3,6 +3,7 @@ import axios from 'axios';
 import App from './App';
 import router from './router';
 import store from './store';
+import './components.js';
 
 axios.interceptors.response.use((response) => {
   // 对响应数据做点什么

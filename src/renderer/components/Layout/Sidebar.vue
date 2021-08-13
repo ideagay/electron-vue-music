@@ -5,14 +5,14 @@
       <span>用户名</span>
     </div>
     <nav class="nav">
-      <router-link v-for="(nav, index) in navs"
-      :key="index"
+      <router-link v-for="nav in navs"
+      :key="nav.name"
       :to="nav.path"><i :class="['iconfont', nav.icon]"></i>&nbsp;&nbsp;{{nav.name}}</router-link>
     </nav>
     <nav class="nav">
       <div class="title">我的音乐</div>
-      <router-link v-for="(nav, index) in myMusic"
-      :key="index"
+      <router-link v-for="nav in myMusic"
+      :key="nav.name"
       :to="nav.path"><i :class="['iconfont', nav.icon]"></i>&nbsp;&nbsp;{{nav.name}}</router-link>
     </nav>
   </div>
@@ -24,44 +24,44 @@ export default {
   data() {
     return {
       navs: [{
-        path: '/',
+        path: '/home',
         name: '发现音乐',
         icon: 'iconyinle'
       }, {
-        path: '/',
+        path: '/fm',
         name: '私人FM',
         icon: 'icontubiaozhizuomobanyihuifu-'
       }, {
-        path: '/',
+        path: '/video',
         name: '视频',
         icon: 'iconshipinbofangyingpian'
       }, {
-        path: '/',
+        path: '/friend',
         name: '朋友',
         icon: 'icondilanxianxingiconyihuifu_huabanfuben'
       }],
       myMusic: [{
-        path: '/',
+        path: '/itunes',
         name: 'iTunes音乐',
         icon: 'iconyinle'
       }, {
-        path: '/',
+        path: '/download',
         name: '下载管理',
         icon: 'iconxiazai'
       }, {
-        path: '/',
+        path: '/recent',
         name: '最近播放',
         icon: 'iconzuijinbofang'
       }, {
-        path: '/',
+        path: '/yun',
         name: '我的音乐云盘',
         icon: 'iconV'
       }, {
-        path: '/',
+        path: '/radio',
         name: '我的电台',
         icon: 'icondiantai'
       }, {
-        path: '/',
+        path: '/collection',
         name: '我的收藏',
         icon: 'iconshoucang1'
       }]
@@ -91,17 +91,23 @@ export default {
     }
   }
   .nav {
-    padding-left: 15px;
     font-size: 14px;
     margin-bottom: 20px;
+    padding-right: 8px;
     .title {
       font-size: 12px;
       color: #999;
+      padding-left: 15px;
     }
     a {
       display: block;
       height: 35px;
       line-height: 35px;
+      padding-left: 15px;
     }
+  }
+  .router-link-active {
+    color: @primary-color;
+    background: rgba(218, 218, 218, .5);
   }
 </style>

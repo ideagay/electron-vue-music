@@ -10,9 +10,9 @@
 </template>
 
 <script>
-import MyHeader from '@/components/MyHeader.vue';
-import Sidebar from '@/components/Sidebar.vue';
-import PlayBar from '@/components/PlayBar.vue';
+import MyHeader from '@/components/Layout/MyHeader.vue';
+import Sidebar from '@/components/Layout/Sidebar.vue';
+import PlayBar from '@/components/Layout/PlayBar.vue';
 
 export default {
   name: 'electron-vue-app',

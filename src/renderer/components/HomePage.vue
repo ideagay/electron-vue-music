@@ -24,6 +24,9 @@
       </eva-row>
     </div>
     <div class="section">
+      <new-music :list="info.newMusic"/>
+    </div>
+    <div class="section">
       <sec-title>推荐MV</sec-title>
       <eva-row :gutter="20">
         <eva-col :span="6" v-for="item in info.mv" :key="item.id">
@@ -36,29 +39,23 @@
       </eva-row>
     </div>
     <div class="section">
-      <fm />
+      <fm :list="info.fm"/>
     </div>
   </div>
 </template>
 
 <script>
-import Banner from '@/components/Banner.vue';
-import SecTitle from '@/components/common/SecTitle.vue';
-import MusicCard from '@/components/common/MusicCard.vue';
-import EvaRow from '@/components/common/EvaRow.vue';
-import EvaCol from '@/components/common/EvaCol.vue';
+import Banner from '@/components/HomePage/Banner.vue';
 import Fm from '@/components/HomePage/Fm.vue';
+import NewMusic from '@/components/HomePage/NewMusic.vue';
 require('@/mock/homePage.js');
 
 export default {
   name: 'Home',
   components: {
     Banner,
-    SecTitle,
-    MusicCard,
-    EvaRow,
-    EvaCol,
-    Fm
+    Fm,
+    NewMusic
   },
   data() {
     return {
