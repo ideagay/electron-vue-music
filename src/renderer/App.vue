@@ -3,7 +3,9 @@
     <my-header/>
     <div class="wrapper">
       <sidebar/>
-      <router-view class="main-view"></router-view>
+      <transition name="fade">
+        <router-view class="main-view"></router-view>
+      </transition>
     </div>
     <play-bar />
   </div>
@@ -35,6 +37,7 @@ export default {
     .main-view {
       height: ~"calc(100vh - 110px)";
       overflow: auto;
+      width: 100%;
       box-sizing: border-box;
     }
   }

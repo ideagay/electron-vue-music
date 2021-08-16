@@ -1,7 +1,9 @@
 <template>
   <div class="header">
     <div class="control">关闭</div>
-    <div class="menus"></div>
+    <div class="menus">
+      <component :is="componentId"></component>
+    </div>
     <div class="tools">
       <search-bar class="item"></search-bar>
       <i class="iconfont iconshezhi"></i>
@@ -18,7 +20,12 @@ export default {
   name: 'MyHeader',
   components: {
     SearchBar
-  }
+  },
+  computed: {
+    componentId() {
+      return this.$store.state.Global.headerComponentId;
+    }
+  },
 };
 </script>
 
