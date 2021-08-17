@@ -10,9 +10,11 @@
       </div>
     </div>
     <div class="tabs">
-      <eva-button>全部歌单 ></eva-button>
+      <eva-button>全部歌单&nbsp;<i class="iconfont iconyoujiantou"></i></eva-button>
       <div class="tags">
-        <span v-for="tag in tags" :key="tag" @click="tagClick(tag)">{{tag}}</span>
+        <span v-for="tag in tags" :key="tag"
+        :class="{'active': tag === params.tag}"
+        @click="tagClick(tag)">{{tag}}</span>
       </div>
     </div>
     <eva-row :gutter="20">
@@ -20,6 +22,8 @@
         <music-card :data="item" style="marginBottom: 40px;"></music-card>
       </eva-col>
     </eva-row>
+    <eva-pagination :total="21"
+    @current-change="currentChange"></eva-pagination>
   </div>
 </template>
 
@@ -31,18 +35,27 @@ export default {
   data() {
     return {
       detail: {},
+      params: {
+        pageSize: 10,
+        tag: '',
+        currentPage: 1
+      },
       tags: ['华语', '流行', '摇滚', '民谣', '电子', '另类/独立',
         '轻音乐', '综艺', '影视原声', 'ACG']
     };
   },
   methods: {
     getList() {
-      this.$http.get('/musicList/data').then((res) => {
+      this.$http.post('/musicList/data', this.params).then((res) => {
         this.detail = res;
       });
     },
     tagClick(tag) {
-      console.log(tag);
+      this.params.tag = tag;
+      this.getList();
+    },
+    currentChange(val) {
+      this.params.current = val;
       this.getList();
     }
   },
@@ -109,20 +122,29 @@ export default {
       color: #666;
       text-align: right;
       span {
-        padding-left: 12px;
+        padding:2px 8px;
         cursor: pointer;
+        border-radius: 20px;
+        position: relative;
+        margin-left: 10px;
         &:hover {
           color: #333;
         }
         &::before {
           content: '|';
-          color: rgb(232, 232, 232);
-          margin-right: 12px;
+          color: rgb(240, 240, 240);
+          position: absolute;
+          top: 0;
+          left: -6px;
         }
         &:first-child {
           &::before {
             content: '';
           }
+        }
+        &.active {
+          background-color: #fcf2f1;
+          color: @primary-color;
         }
       }
     }

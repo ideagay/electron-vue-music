@@ -22,6 +22,7 @@ export default {
 
 <style lang="less">
   .eva-button {
+    cursor: pointer;
     display: inline-block;
     border: 1px solid rgb(212, 212, 212);
     border-radius: 20px;
@@ -29,5 +30,11 @@ export default {
     padding: 7px 12px;
     line-height: 1;
     font-size: 13px;
+    * {
+      vertical-align: text-top;
+    }
+    &:hover {
+      background-color: @hover-bg;
+    }
   }
 </style>

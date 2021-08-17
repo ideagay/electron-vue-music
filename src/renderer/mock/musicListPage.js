@@ -1,7 +1,7 @@
 const Mock = require('mockjs');
-const { squareImg, rectangleImg } = require('./imgs');
+const { squareImg } = require('./imgs');
 
-Mock.mock('/musicList/data', {
+Mock.mock('/musicList/data', 'POST', {
   banner: {
     'img|1': squareImg,
     tag: '@ctitle(4)',
@@ -12,29 +12,6 @@ Mock.mock('/musicList/data', {
     id: '@guid',
     name: '@ctitle(6,30)',
     'img|1': squareImg
-  }],
-  'dujia|4': [{
-    id: '@guid',
-    'img|1': rectangleImg,
-    name: '@ctitle(6,30)'
-  }],
-  'mv|4': [{
-    id: '@guid',
-    'img|1': rectangleImg,
-    name: '@ctitle(6,30)',
-    author: '@ctitle(6, 10)'
-  }],
-  'fm|6': [{
-    id: '@guid',
-    'img|1': squareImg,
-    name: '@ctitle(6,30)',
-    desc: '@ctitle(6, 10)'
-  }],
-  'newMusic|10': [{
-    id: '@guid',
-    'img|1': squareImg,
-    name: '@ctitle(4,6)',
-    author: '@cname(2, 4)'
   }]
 });
 
